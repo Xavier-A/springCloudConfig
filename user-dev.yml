@@ -1,0 +1,23 @@
+server:
+  port: 9101
+spring:   # 服务名称，暂时没有用，讲到SpringCloud服务调用的时候才会有用。
+  application:
+    name: microservice-user
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springbootdb?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    show-sql: true # 是否打印sql语句
+    generate-ddl: true # 是否自动建表
+    database: mysql # jpa连接的数据库类型
+
+eureka:
+  client:
+    register-with-eureka: true #把服务注册到Eureka server上去
+    fetch-registry: true  #从Eureka服务器中获取服务信息
+    service-url:
+      defaultZone: http://127.0.0.1:8888/eureka
+  instance:
+    prefer-ip-address: true #优先使用服务的id 地址

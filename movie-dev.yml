@@ -1,0 +1,26 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: micservice-movie
+eureka:
+  client:
+    register-with-eureka: true #把服务注册到Eureka server上去
+    fetch-registry: true #从Eureka服务器中获取服务信息
+    service-url:
+      defaultZone: http://127.0.0.1:8888/eureka   #如果是多个Eureka server的话用逗号隔开
+    #修改服务调用方获取注册信息的间隔时间默认是30
+    registry-fetch-interval-seconds: 40
+  instance:
+    prefer-ip-address: true
+    #修改续约间隔时间默认30秒
+    lease-renewal-interval-in-seconds: 30
+    #修改服务失效时间默认是90
+    lease-expiration-duration-in-seconds: 90
+#修改负载均衡的随机算法
+microservice-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+feign:
+  hystrix:
+    enabled: true
